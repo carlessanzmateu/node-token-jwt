@@ -1,9 +1,9 @@
 // API ROUTES -----
+const jwt = require( 'jsonwebtoken' );
+const User = require( '../models/user' );
 
 module.exports = ( config, app, apiRoutes ) => {
-    const jwt = require( 'jsonwebtoken' );
-    const User = require( '../models/user' );
-    const tokenMiddleware = require( '../middlewares/token' );
+    const tokenMiddleware = require( '../middlewares/token' ) ( app, jwt );
 
     app.set( 'superSecret', config.secret );
 
@@ -26,7 +26,7 @@ module.exports = ( config, app, apiRoutes ) => {
                     };
     
                     const token = jwt.sign( payload, app.get( 'superSecret' ), {
-                        expiresIn: 1440, //24hours
+                        expiresIn: 1440, // minutes ( 24hours )
                     } );
     
                     res.json( {
