@@ -20,3 +20,5 @@ app.use( morgan( 'dev' ) );
 
 app.listen( port );
 console.log( `Magic happens at http://localhost:${ port }` );
+
+module.exports = app;

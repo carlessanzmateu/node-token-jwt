@@ -2,7 +2,8 @@
 
 module.exports = ( app, port ) => {
     app.get( '/', ( req, res )=> {
-        res.send( `Hello! The API is at http://localhost:${ port } /api` );
+        res.sendStatus(200);
+        //res.send( `Hello! The API is at http://localhost:${ port }/api` );
     });
     
     app.get( '/setup', ( req, res ) => {
